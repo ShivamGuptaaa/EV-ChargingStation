@@ -18,7 +18,7 @@ namespace EV.ChargingStation.Base.Data
         };
 
         public static List<Site> Sites => sites;
-        public static void LockSocket(int Id, bool setLock) => (sites.FirstOrDefault(x => x.Id == Id)).IsLocked = setLock;
+        public static void LockSocket(int Id, bool setLock) => sites.FirstOrDefault(x => x.Id == Id).IsLocked = setLock;
 
     }
 }

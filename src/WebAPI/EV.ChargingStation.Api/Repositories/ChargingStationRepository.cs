@@ -21,7 +21,7 @@ namespace EV.ChargingStation.Repositories
             _logger.LogInformation("Get Receipt Initiated");
             Data.LockSocket(SiteId, true);
             _logger.LogInformation("Get Receipt Completed");
-            return new Receipt() { TotalTime = TotalMinutes, RatePerMinute = RatePerMinute, TotalAmount = TotalMinutes * RatePerMinute };
+            return new Receipt() { TotalTime = TotalMinutes, RatePerMinute = RatePerMinute, TotalAmount = TotalMinutes * RatePerMinute, SiteId = SiteId ,SiteName = GetSiteById(SiteId).Name};
         }
 
         public Site GetSiteById(int Id)

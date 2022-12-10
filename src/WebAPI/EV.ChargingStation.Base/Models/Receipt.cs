@@ -9,6 +9,8 @@ namespace EV.ChargingStation.Base.Models
     public class Receipt
     {
         public Guid Id { get; set; } = Guid.NewGuid(); 
+        public int SiteId { get; set; }
+        public string SiteName { get; set; }
         public double TotalAmount { get; set; }
         public double RatePerMinute { get; set; }
         public int TotalTime { get; set; } //time in minute
