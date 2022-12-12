@@ -36,19 +36,19 @@ namespace EV.ChargingStation.Controllers
         }
 
         [HttpPost("CompleteCharging")]
-        public IActionResult CompleteCharging(int MinutesConsumed, int SiteId) 
+        public IActionResult CompleteCharging(CompleteCharging completeCharging) 
         {
             _logger.LogInformation("CompleteCharging Action Initiated");
-            Site site = _chargingStationRepository.GetSiteById(SiteId);
-            var response = _chargingStationRepository.GetReceipt(MinutesConsumed, site.RatePerMinute,SiteId);
+            Site site = _chargingStationRepository.GetSiteById(completeCharging.SiteId);
+            var response = _chargingStationRepository.GetReceipt(completeCharging.MinutesConsumed, site.RatePerMinute, completeCharging.SiteId);
             return Ok(response);
         }
 
         [HttpPost("UnlockChargingStation")]
-        public IActionResult UnlockChargingStation(int SiteId) 
+        public IActionResult UnlockChargingStation(UnlockSocket unlockSocket) 
         {
             _logger.LogInformation("UnlockChargingStation Action initiated");
-            Data.LockSocket(SiteId, false);
+            Data.LockSocket(unlockSocket.SiteId, false);
             return Ok();
         }
     }

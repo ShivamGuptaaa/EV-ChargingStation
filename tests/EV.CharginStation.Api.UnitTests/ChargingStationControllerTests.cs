@@ -56,7 +56,7 @@ namespace EV.CharginStation.Api.UnitTests
         public void CompleteCharging()
         {
             var controller = new ChargingStationController(_mockLogger.Object, _mockChargingStationRepository.Object);
-            var result = controller.CompleteCharging(4,4);
+            var result = controller.CompleteCharging(new CompleteCharging() { MinutesConsumed=4,SiteId=4});
             result.ShouldBeOfType<OkObjectResult>();
             var okObjectResult = result as OkObjectResult;
             okObjectResult.Value.ShouldNotBeNull();
@@ -68,7 +68,7 @@ namespace EV.CharginStation.Api.UnitTests
         public void UnlockChargingStation()
         {
             var controller = new ChargingStationController(_mockLogger.Object, _mockChargingStationRepository.Object);
-            var result = controller.UnlockChargingStation(1);
+            var result = controller.UnlockChargingStation(new UnlockSocket() {SiteId= 4});
             result.ShouldBeOfType<OkResult>();
         }
 
